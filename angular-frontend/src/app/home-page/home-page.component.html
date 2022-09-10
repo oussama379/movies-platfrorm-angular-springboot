@@ -1,0 +1,107 @@
+<div class="m-5 mt-4 mb-0">
+  <mat-grid-list cols="4" rowHeight="2:5" [gutterSize]="'10px'" >
+    <nav>
+       <h2 style="color: white; display: inline">Top Rated Movies</h2>
+      <button style="float: right" class="btn btn-orange" type="submit">See more</button>
+    </nav>
+    <mat-grid-tile *ngFor="let m of topRated">
+      <mat-card [style.background]="color" >
+        <mat-card-header>
+          <mat-card-title>{{m.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://image.tmdb.org/t/p/original{{m.poster_path}}">
+        <mat-card-content>
+          <p>
+            {{m.overview}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn btn-red" (click)="handleNavigateToMovieDetails(m.id)" mat-button>See Details</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div class="divider py-1 bg-dark"><hr></div>
+
+<div class="m-5 mt-4 mb-0">
+  <mat-grid-list cols="4" rowHeight="2:5" [gutterSize]="'10px'" >
+    <nav>
+      <h2 style="color: white; display: inline">Popular Movies</h2>
+      <button style="float: right" class="btn btn-orange" type="submit">See more</button>
+    </nav>
+    <mat-grid-tile *ngFor="let p of popular">
+      <mat-card [style.background]="color">
+        <mat-card-header>
+          <mat-card-title>{{p.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://image.tmdb.org/t/p/original{{p.poster_path}}">
+        <mat-card-content>
+          <p>
+            {{p.overview}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn btn-red" mat-button>See Details</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+
+<div class="divider py-1 bg-dark"><hr></div>
+
+<div class="m-5 mt-4 mb-0">
+  <mat-grid-list cols="4" rowHeight="2:5" [gutterSize]="'10px'" >
+    <nav>
+      <h2 style="color: white; display: inline">Upcoming Movies</h2>
+      <button style="float: right" class="btn btn-orange" type="submit">See more</button>
+    </nav>
+    <mat-grid-tile *ngFor="let u of upcoming">
+      <mat-card [style.background]="color">
+        <mat-card-header>
+          <mat-card-title>{{u.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://image.tmdb.org/t/p/original{{u.poster_path}}">
+        <mat-card-content>
+          <p>
+            {{u.overview}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn btn-red" mat-button>See Details</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+
+<div class="divider py-1 bg-dark"><hr></div>
+
+<div class="m-5 mt-4 mb-0">
+  <mat-grid-list cols="4" rowHeight="2:5" [gutterSize]="'10px'" >
+    <nav>
+      <h2 style="color: white; display: inline">Trending Movies</h2>
+      <button style="float: right" class="btn btn-orange" type="submit">See more</button>
+    </nav>
+    <mat-grid-tile *ngFor="let t of trending" >
+      <mat-card [style.background]="color">
+        <mat-card-header >
+          <mat-card-title>{{t.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://image.tmdb.org/t/p/original{{t.poster_path}}">
+        <mat-card-content>
+          <p>
+            {{t.overview}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn btn-red" mat-button>See Details</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

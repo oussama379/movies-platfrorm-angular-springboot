@@ -1,0 +1,22 @@
+<div class="m-2">
+    <ul>
+      <li>
+        <div style="height: 20%; width: 10%">
+          <img src="https://image.tmdb.org/t/p/original{{movie.poster_path}}">
+        </div>
+      </li>
+      <li>
+        <div>
+          <span style="color: white"><b>{{movie.title}}</b></span>
+        </div>
+      </li>
+      <li>
+        <div>
+          <ngb-rating [(rate)]="currentRate"></ngb-rating>
+        </div>
+      </li>
+    </ul>
+    <div style="height: 20%; width: 80%; color: white">
+      <p>{{movie.overview}}</p>
+    </div>
+</div>

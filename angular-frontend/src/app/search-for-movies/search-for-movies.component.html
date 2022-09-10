@@ -1,0 +1,24 @@
+<div class="m-5 mt-4 mb-0">
+  <mat-grid-list cols="4" rowHeight="2:5" [gutterSize]="'10px'" >
+    <nav>
+      <h2 style="color: white; display: inline">Search for : {{title}}</h2>
+      <button style="float: right" class="btn btn-orange" type="submit">See more</button>
+    </nav>
+    <mat-grid-tile *ngFor="let m of moviesByTitles">
+      <mat-card [style.background]="color" >
+        <mat-card-header>
+          <mat-card-title>{{m.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src="https://image.tmdb.org/t/p/original{{m.poster_path}}">
+        <mat-card-content>
+          <p>
+            {{m.overview}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button class="btn btn-red" mat-button>See Details</button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

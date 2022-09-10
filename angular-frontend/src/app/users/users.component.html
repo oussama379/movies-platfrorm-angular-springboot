@@ -1,0 +1,120 @@
+<div class="m-5">
+  <nav class="p-2 m-2">
+    <form [formGroup]="searchForm" (ngSubmit)="handleSearchUsersByUsername(0,5)">
+      <input style="width: 50%; display: inline" class="form-control mr-sm-2" type="search" placeholder="username" aria-label="Search" formControlName="username">
+      <button class="btn btn-outline-success" type="submit">Search</button>
+      <button style="float: right; display: inline" class="btn btn-outline-info" (click)="open(mymodal)">Add User</button>
+      <button style="display: inline" class="btn btn-outline-danger" type="submit" *ngIf="isSearchMode" (click)="handleCancelSearch()">Cancel Search</button>
+
+    </form>
+  </nav>
+
+  <table class="table table-striped" style="color: black; background-color: white">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Full Name</th>
+      <th scope="col">Username</th>
+      <th scope="col">Email</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let u of users">
+      <th scope="row">{{u.id}}</th>
+      <td>{{u.fullname}}</td>
+      <td>{{u.username}}</td>
+      <td>{{u.email}}</td>
+      <td>
+        <button class="btn btn-danger" (click)="handleDeleteUser(u.id)">
+          <i class="bi bi-trash"></i>
+        </button>
+      </td>
+      <td>
+        <button class="btn btn-success" (click)="handleFillFormForEditUser(u) ">
+          <span>Edit</span>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+<!--  <ul class="nav nav-pills">-->
+<!--    <li *ngFor="let item of [].constructor(totalPages); let i = index">-->
+<!--      <a (click)="goToPage(i)" [ngClass]="i == currentPage? 'btn-info' : 'btn-outline-info'" class="btn ms-1 mt-1">{{i}}</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--  When the user interacts with the paginator, a PageEvent will be fired that can be used to update any associated data view. So, it binds the PageEvent to the nextPage() method. This method calls this.getProducts() method with page number and size from the PageEvent.-->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" [length]="totalElements" (page)="nextPage($event)"> </mat-paginator>
+</div>
+
+
+<ng-template #mymodal let-modal>
+  <div class="modal-content">
+    <div class="modal-header text-center">
+      <h4 class="modal-title w-100 font-weight-bold">Add User</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <form [formGroup]="addUserForm" (ngSubmit)="isEdit ? handleEdit() : handleAddUser()">
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5"  *ngIf="isEdit">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" >ID :</label>
+          <input type="hidden" class="form-control" formControlName="id">
+          {{addUserForm.value.id}}
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" >Full Name :</label>
+          <input type="text" class="form-control" formControlName="fullname">
+          <small class="text-danger" *ngIf="addUserForm.controls['fullname'].errors && addUserForm.controls['fullname'].touched">
+            {{getFormErrors(addUserForm.controls['fullname'].errors)}}
+          </small>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" >Username :</label>
+          <input type="email" class="form-control" formControlName="username">
+          <small class="text-danger" *ngIf="addUserForm.controls['username'].errors && addUserForm.controls['username'].touched">
+            {{getFormErrors(addUserForm.controls['username'].errors)}}
+          </small>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" >Email :</label>
+          <input type="email" class="form-control" formControlName="email">
+          <small class="text-danger" *ngIf="addUserForm.controls['email'].errors && addUserForm.controls['email'].touched">
+            {{getFormErrors(addUserForm.controls['email'].errors)}}
+          </small>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" >Password :</label>
+          <input type="password" class="form-control" formControlName="password">
+          <small class="text-danger" *ngIf="addUserForm.controls['password'].errors && addUserForm.controls['password'].touched">
+            {{getFormErrors(addUserForm.controls['password'].errors)}}
+          </small>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" >Confirm Password :</label>
+          <input type="password" class="form-control" formControlName="passwordConf">
+          <small class="text-danger" *ngIf="addUserForm.errors && addUserForm.errors['mismatch'] && addUserForm.controls['passwordConf'].touched ">
+            Passwords do not match
+          </small>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button [disabled]="!addUserForm.valid" type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Add User</button>
+      </div>
+    </form>
+  </div>
+</ng-template>

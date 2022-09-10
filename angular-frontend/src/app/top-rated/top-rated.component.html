@@ -1,0 +1,24 @@
+<div class="m-5 mt-2">
+<mat-grid-list cols="4" rowHeight="2:6" [gutterSize]="'10px'" >
+  <nav>
+    <h2>Top Rated Movies</h2>
+    <button class="btn btn-outline-dark" type="submit">See more</button>
+  </nav>
+  <mat-grid-tile *ngFor="let m of topRated.slice(0, 4)" >
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{m.title}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src="https://image.tmdb.org/t/p/original{{m.poster_path}}">
+      <mat-card-content>
+        <p>
+          {{m.overview}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="btn btn-outline-info" mat-button>See Details</button>
+      </mat-card-actions>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
+</div>
