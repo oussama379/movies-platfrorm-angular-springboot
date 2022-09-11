@@ -7,4 +7,4 @@ This site is meant for sharing its members' tastes in films. Members can use it 
 
 The application's architecture : 
 
-![AngularJS-Shield](https://user-images.githubusercontent.com/70114659/189531741-7b0c97c1-83ff-4779-9173-9c0db6565c1a.svg)
+![Sout_MIOLA__1A_FINALE](https://user-images.githubusercontent.com/70114659/189531981-2b5316db-8cda-4b1b-abbf-28c2610398ce.jpg)
